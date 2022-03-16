@@ -1,0 +1,11 @@
+export const BACKGROUND_SCROLL_SPEED = 1;
+export const GROUND_SCROLL_SPEED = 10;
+export const BACKGROUND_LOOPING_POINT = 413;
+export const GRAVITY = .1;
+export const JUMP_VELOCITY = -2;
+export const PIPE_SCROLL_SPEED = -2;
+export const PIPE_SPAWN_TIME = 70;
+export const GAP_HEIGHT = 90;
+export const PIPE_HEIGHT = 288;
+export const PIPE_WIDTH = 70;
+export const GROUND_OFFSET = 16;

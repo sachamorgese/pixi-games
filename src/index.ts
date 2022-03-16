@@ -1,19 +1,17 @@
-import { Application, Sprite } from 'pixi.js'
+import { Application } from 'pixi.js'
+import PlayScene from './scenes/PlayScene';
+import './utils/loader';
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
-	autoDensity:true,
+	autoDensity: true,
 	backgroundColor: 0x6495ed,
-	width: 640,
-	height: 480
+	width: 512,
+	height: 288
 });
 
-const clampy: Sprite = Sprite.from("clampy.png");
+// pass in the screen size to avoid "asking up"
+const sceny: PlayScene = new PlayScene(app.screen.width, app.screen.height);
 
-clampy.anchor.set(0.5);
-
-clampy.x = app.screen.width / 2;
-clampy.y = app.screen.height / 2;
-
-app.stage.addChild(clampy);
+app.stage.addChild(sceny)
