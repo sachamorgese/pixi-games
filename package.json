@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@pixi/sound": "^4.2.0",
+    "fontfaceobserver": "^2.1.0",
     "pixi.js": "^6.2.2",
     "tweedle.js": "^2.0.0"
   },

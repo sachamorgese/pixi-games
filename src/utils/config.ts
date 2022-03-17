@@ -9,3 +9,5 @@ export const GAP_HEIGHT = 90;
 export const PIPE_HEIGHT = 288;
 export const PIPE_WIDTH = 70;
 export const GROUND_OFFSET = 16;
+export const SCREEN_WIDTH = 512;
+export const SCREEN_HEIGHT = 288;

@@ -17,4 +17,9 @@ export default class Keyboard {
   static action(): boolean {
     return Keyboard.state.get("Space") || Keyboard.state.get("Enter");
   }
+
+  static enter(): boolean {
+    return Keyboard.state.get("Enter");
+  }
+
 }

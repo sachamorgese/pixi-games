@@ -1,6 +1,6 @@
 import {Sprite, Texture} from 'pixi.js';
 import {PIPE_HEIGHT, PIPE_WIDTH} from '../utils/config';
-import PlayScene from './scenes/PlayScene';
+import PlayScene from '../scenes/PlayScene';
 
 type Options = {
   y: number;

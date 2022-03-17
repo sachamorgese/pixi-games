@@ -1,5 +1,5 @@
 import {Container} from 'pixi.js';
-import PlayScene from './scenes/PlayScene';
+import PlayScene from '../scenes/PlayScene';
 import Pipe from '../entities/Pipe';
 import {GAP_HEIGHT, PIPE_SCROLL_SPEED, PIPE_WIDTH} from '../utils/config';
 
@@ -45,10 +45,10 @@ export default class PipePair extends Container {
   }
 
   update(dt: number) {
-    if (this.x > -PIPE_WIDTH) {
-      this.x -= -dt * PIPE_SCROLL_SPEED;
-    } else {
+    if (this.x < -PIPE_WIDTH * 3) {
       this.deadPipes = true;
+    } else {
+      this.x -= -dt * PIPE_SCROLL_SPEED;
     }
   }
 

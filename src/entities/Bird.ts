@@ -1,7 +1,7 @@
 import { Sprite, Texture, Container } from 'pixi.js';
-import {GRAVITY, JUMP_VELOCITY} from '../utils/config';
+import { GRAVITY, JUMP_VELOCITY } from '../utils/config';
 import Keyboard from "../controls/Keyboard";
-import {checkCollision} from '../utils';
+import { checkCollision } from '../utils';
 import PipePair from '../components/PipePair';
 
 export default class Bird extends Sprite {
@@ -21,7 +21,7 @@ export default class Bird extends Sprite {
   update(dt: number) {
     this.dy += GRAVITY * dt;
 
-    if(Keyboard.action()) {
+    if (Keyboard.action()) {
       this.dy = JUMP_VELOCITY;
     }
 

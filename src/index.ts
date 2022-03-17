@@ -1,6 +1,10 @@
 import { Application } from 'pixi.js'
-import PlayScene from './scenes/PlayScene';
 import './utils/loader';
+import game from './engine/Game';
+import Background from './components/Background';
+import loader from './utils/loader';
+import Ground from './components/Ground';
+import TitleScreenScene from './scenes/TitleScreenScene';
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -12,6 +16,22 @@ const app = new Application({
 });
 
 // pass in the screen size to avoid "asking up"
-const sceny: PlayScene = new PlayScene(app.screen.width, app.screen.height);
+const sceny = new TitleScreenScene();
 
-app.stage.addChild(sceny)
+const backGround = new Background();
+const ground = new Ground();
+
+game.init(app);
+game.addChild(backGround.getObject());
+game.setScene(sceny);
+game.addChild(ground.getObject());
+
+const loop = (dt) => {
+	backGround.update(dt)
+	ground.update(dt)
+};
+
+loader
+	.add("images/background.png")
+	.add("images/ground.png")
+	.load(() => game.run(loop));

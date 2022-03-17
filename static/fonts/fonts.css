@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "Basic Font";
+    src: url("font.ttf");
+}
+
+@font-face {
+    font-family: "Flappy Font";
+    src: url('flappy.ttf');
+}
