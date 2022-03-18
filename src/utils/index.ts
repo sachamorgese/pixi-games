@@ -6,13 +6,13 @@ export function checkCollision(objA: DisplayObject, objB: DisplayObject, offset:
   const b = objB.getBounds();
 
   const rightmostLeft = a.left + offset < b.left ? b.left : a.left + offset;
-  const leftmostRight = a.right - offset > b.right ? b.right : a.right - offset;
+  const leftmostRight = a.right - offset * 2 > b.right ? b.right : a.right - offset * 2;
 
   if (leftmostRight <= rightmostLeft) {
     return false;
   }
 
-  const bottommostTop = a.top + offset < b.top ? b.top : a.top - offset;
+  const bottommostTop = a.top + offset < b.top ? b.top : a.top + offset;
   const topmostBottom = a.bottom - offset > b.bottom ? b.bottom : a.bottom - offset;
 
   return topmostBottom > bottommostTop;

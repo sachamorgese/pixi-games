@@ -29,10 +29,10 @@ export default class Bird extends Sprite {
   }
 
   collides(pipes: PipePair) {
-    if (checkCollision(this, pipes.getPipe('upper'), 2)) {
+    if (checkCollision(this, pipes.getPipe('upper'), 4)) {
       return true;
     }
-    return checkCollision(this, pipes.getPipe('lower'), 2);
+    return checkCollision(this, pipes.getPipe('lower'), 4);
   }
 
   kill() {

@@ -1,9 +1,11 @@
-import { Container, Ticker } from "pixi.js";
+import {Container, Text, Ticker} from 'pixi.js';
 import Bird from '../entities/Bird';
 import {config, getRandomIntInclusive} from '../utils';
 import PipePair from '../components/PipePair';
-import { GAP_HEIGHT, GROUND_OFFSET } from '../utils/config';
+import {GAP_HEIGHT, GROUND_OFFSET, PIPE_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH} from '../utils/config';
 import Scene from '../engine/Scene';
+import game from '../engine/Game';
+import ScoreScene from './ScoreScene';
 
 
 export default class PlayScene extends Scene {
@@ -12,6 +14,7 @@ export default class PlayScene extends Scene {
   private pipes: Container;
   private lastY: number = getRandomIntInclusive(0, 80) + 20;
   private scrolling: boolean = true;
+  private scoreText: Text;
 
   constructor(private screenWidth: number, private screenHeight: number) {
     super();
@@ -25,6 +28,17 @@ export default class PlayScene extends Scene {
     this.pipes.height = this.screenHeight;
 
     this.container.addChild(this.pipes);
+
+    this.scoreText = new Text(`Score: ${game.score}`, {
+      fontFamily: 'Basic Font',
+      fontSize: 14,
+      align: 'center',
+    });
+
+    this.scoreText.y = 10;
+    this.scoreText.x = 30;
+
+    this.container.addChild(this.scoreText);
 
     this.bird = new Bird(this.container);
     this.bird.x = this.screenWidth / 2;
@@ -52,7 +66,15 @@ export default class PlayScene extends Scene {
 
       if (this.bird?.collides(pair)) {
         this.scrolling = false;
-        Ticker.shared.stop();
+        game.setScene(new ScoreScene());
+      }
+
+      if (!pair.scored) {
+        if (pair.x + PIPE_WIDTH < this.bird.x) {
+          pair.scored = true;
+          game.score++;
+          this.scoreText.text = `Score: ${game.score}`;
+        }
       }
 
       if (pair.dead) {
@@ -65,9 +87,10 @@ export default class PlayScene extends Scene {
 
       if (this.bird.y > this.screenHeight - GROUND_OFFSET - this.bird.height / 2) {
         this.scrolling = false;
-        Ticker.shared.stop();
         this.bird.kill();
         this.bird = null;
+
+        game.setScene(new ScoreScene());
       }
     }
   }

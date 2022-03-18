@@ -8,13 +8,19 @@ class Game {
   private gameUpdate: (dt: number) => void
   private scene: Scene;
   private gameContainer: Container;
+  score: number = 0;
 
   constructor() {
     this.gameContainer = new Container();
+    this.gameContainer.sortableChildren = true;
   }
 
   init(app: Application) {
     app.stage.addChild(this.gameContainer);
+  }
+
+  reset = () => {
+    this.score = 0;
   }
 
   addChild(child: DisplayObject) {
@@ -28,7 +34,7 @@ class Game {
     this.gameContainer.addChild(scene.getContainer());
   }
 
-  run(gameUpdate = () => {}) {
+  run(gameUpdate = (dt?: number) => {}) {
     this.gameUpdate = gameUpdate;
     Ticker.shared.add(this.update, this);
   };

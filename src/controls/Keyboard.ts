@@ -15,11 +15,10 @@ export default class Keyboard {
     Keyboard.pressed = false;
   }
   static action(): boolean {
-    return Keyboard.state.get("Space") || Keyboard.state.get("Enter");
+    return Keyboard.state.get("Space");
   }
 
   static enter(): boolean {
     return Keyboard.state.get("Enter");
   }
-
 }

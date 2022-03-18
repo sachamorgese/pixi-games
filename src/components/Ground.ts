@@ -9,6 +9,7 @@ export default class Ground {
   constructor() {
     this.ground.x = 0;
     this.ground.y = SCREEN_HEIGHT - GROUND_OFFSET;
+    this.ground.zIndex = 10;
   }
 
   getObject = () => {

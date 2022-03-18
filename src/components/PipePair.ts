@@ -17,6 +17,7 @@ type Pipes = {
 export default class PipePair extends Container {
   private pipes: Pipes;
   private deadPipes: boolean = false;
+  scored: boolean = false;
 
   constructor(playScene: PlayScene, opts: Options) {
     super();
