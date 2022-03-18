@@ -1,6 +1,8 @@
-import {Application, Container, DisplayObject, Ticker} from 'pixi.js';
+import {Application, Container, DisplayObject, Ticker } from 'pixi.js';
+import { sound } from '@pixi/sound';
 import Scene from './Scene';
 import Keyboard from "../controls/Keyboard";
+import loader from '../utils/loader';
 
 Keyboard.initialize();
 

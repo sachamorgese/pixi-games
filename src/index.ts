@@ -34,4 +34,5 @@ const loop = (dt) => {
 loader
 	.add("images/background.png")
 	.add("images/ground.png")
+	.add('bgsound', "sounds/marios_way.mp3")
 	.load(() => game.run(loop));
