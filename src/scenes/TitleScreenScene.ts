@@ -18,7 +18,7 @@ export default class TitleScreenScene extends Scene {
   }
 
   setText() {
-    const topText = new Text("Fifty Bird", {
+    const topText = new Text("Sacha's Bird", {
       fontFamily: 'Flappy Font',
       fontSize: 64,
       align: 'center',

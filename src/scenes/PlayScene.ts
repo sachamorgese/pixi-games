@@ -13,7 +13,6 @@ export default class PlayScene extends Scene {
   private spawnTimer: number = 0;
   private pipes: Container;
   private lastY: number = getRandomIntInclusive(0, 80) + 20;
-  private scrolling: boolean = true;
   private scoreText: Text;
 
   constructor(private screenWidth: number, private screenHeight: number) {
@@ -41,15 +40,12 @@ export default class PlayScene extends Scene {
     this.container.addChild(this.scoreText);
 
     this.bird = new Bird(this.container);
+    this.bird.anchor.set(0.5);
     this.bird.x = this.screenWidth / 2;
     this.bird.y = this.screenHeight / 2;
   }
 
    update(dt: number): void {
-    if (!this.scrolling) {
-      return;
-    }
-
     this.spawnTimer += dt;
 
     if (this.spawnTimer > config.PIPE_SPAWN_TIME) {
@@ -65,7 +61,6 @@ export default class PlayScene extends Scene {
       pair.update(dt);
 
       if (this.bird?.collides(pair)) {
-        this.scrolling = false;
         game.setScene(new ScoreScene());
       }
 
@@ -85,8 +80,8 @@ export default class PlayScene extends Scene {
     if (this.bird) {
       this.bird.update(dt);
 
-      if (this.bird.y > this.screenHeight - GROUND_OFFSET - this.bird.height / 2) {
-        this.scrolling = false;
+      if (this.bird.y > this.screenHeight - GROUND_OFFSET - this.bird.height / 2 ||
+        this.bird.y < -this.bird.height) {
         this.bird.kill();
         this.bird = null;
 
