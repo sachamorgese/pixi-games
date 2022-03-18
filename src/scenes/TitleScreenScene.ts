@@ -18,6 +18,18 @@ export default class TitleScreenScene extends Scene {
   }
 
   setText() {
+    const soundText = new Text(`Click anywhere to enable sounds...`, {
+      fontFamily: 'Basic Font',
+      fontSize: 14,
+      align: 'center',
+    });
+
+    soundText.y = 20;
+    soundText.anchor.set(0.5);
+    soundText.x = SCREEN_WIDTH - 140;
+
+    this.container.addChild(soundText);
+
     const topText = new Text("Sacha's Bird", {
       fontFamily: 'Flappy Font',
       fontSize: 64,

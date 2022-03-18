@@ -2,9 +2,10 @@ import { Application } from 'pixi.js'
 import './utils/loader';
 import game from './engine/Game';
 import Background from './components/Background';
-import loader from './utils/loader';
 import Ground from './components/Ground';
 import TitleScreenScene from './scenes/TitleScreenScene';
+import {sound} from '@pixi/sound';
+import loader from './utils/loader';
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -14,6 +15,12 @@ const app = new Application({
 	width: 512,
 	height: 288
 });
+
+sound.add('bg-sound', 'sounds/marios_way.mp3');
+sound.add('explosion', 'sounds/explosion.wav');
+sound.add('hurt', 'sounds/hurt.wav');
+sound.add('jump', 'sounds/jump.wav');
+sound.add('score', 'sounds/score.wav');
 
 // pass in the screen size to avoid "asking up"
 const sceny = new TitleScreenScene();
@@ -31,8 +38,4 @@ const loop = (dt) => {
 	ground.update(dt)
 };
 
-loader
-	.add("images/background.png")
-	.add("images/ground.png")
-	.add('bgsound', "sounds/marios_way.mp3")
-	.load(() => game.run(loop));
+game.run(loop);

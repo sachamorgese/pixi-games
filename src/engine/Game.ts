@@ -1,5 +1,5 @@
 import {Application, Container, DisplayObject, Ticker } from 'pixi.js';
-import { sound } from '@pixi/sound';
+import * as sound from '@pixi/sound';
 import Scene from './Scene';
 import Keyboard from "../controls/Keyboard";
 import loader from '../utils/loader';
@@ -39,6 +39,10 @@ class Game {
   run(gameUpdate = (dt?: number) => {}) {
     this.gameUpdate = gameUpdate;
     Ticker.shared.add(this.update, this);
+
+    const bg = sound.sound.find('bg-sound');
+    bg.play();
+    bg.loop = true;
   };
 
   update(dt: number) {

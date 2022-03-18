@@ -6,7 +6,7 @@ import {GAP_HEIGHT, GROUND_OFFSET, PIPE_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH} from
 import Scene from '../engine/Scene';
 import game from '../engine/Game';
 import ScoreScene from './ScoreScene';
-
+import {sound} from '@pixi/sound';
 
 export default class PlayScene extends Scene {
   private bird: Bird;
@@ -61,11 +61,14 @@ export default class PlayScene extends Scene {
       pair.update(dt);
 
       if (this.bird?.collides(pair)) {
+        sound.play('explosion');
+        sound.play('hurt');
         game.setScene(new ScoreScene());
       }
 
       if (!pair.scored) {
         if (pair.x + PIPE_WIDTH < this.bird.x) {
+          sound.play('score');
           pair.scored = true;
           game.score++;
           this.scoreText.text = `Score: ${game.score}`;
@@ -82,6 +85,9 @@ export default class PlayScene extends Scene {
 
       if (this.bird.y > this.screenHeight - GROUND_OFFSET - this.bird.height / 2 ||
         this.bird.y < -this.bird.height) {
+        sound.play('explosion');
+        sound.play('hurt');
+
         this.bird.kill();
         this.bird = null;
 

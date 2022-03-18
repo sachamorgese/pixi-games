@@ -3,6 +3,7 @@ import { GRAVITY, JUMP_VELOCITY } from '../utils/config';
 import Keyboard from "../controls/Keyboard";
 import { checkCollision } from '../utils';
 import PipePair from '../components/PipePair';
+import * as sound from '@pixi/sound';
 
 export default class Bird extends Sprite {
   private dy: number = 0;
@@ -23,6 +24,8 @@ export default class Bird extends Sprite {
 
     if (Keyboard.action()) {
       this.dy = JUMP_VELOCITY;
+      const jump = sound.sound.find('jump');
+      jump.play();
     }
 
     this.y += this.dy;
