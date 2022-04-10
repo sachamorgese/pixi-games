@@ -5,7 +5,6 @@ import Background from './components/Background';
 import Ground from './components/Ground';
 import TitleScreenScene from './scenes/TitleScreenScene';
 import {sound} from '@pixi/sound';
-import loader from './utils/loader';
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
