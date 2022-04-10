@@ -25,7 +25,9 @@ export default class Bird extends Sprite {
     if (Keyboard.action()) {
       this.dy = JUMP_VELOCITY;
       const jump = sound.sound.find('jump');
-      jump.play();
+      if (!jump.isPlaying) {
+        jump.play();
+      }
     }
 
     this.y += this.dy;
